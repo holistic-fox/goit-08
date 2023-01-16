@@ -7,8 +7,14 @@
     <script src="index.js"></script>
 </head>
 <body>
-    <div id="people-container"></div>
-    <div id="pagination-container">
+    <div class="button-container">
+        <button id="load-people-button">Load people</button>
+    </div>
+    <div id="loading-container" class="hidden">
+        Loading...
+    </div>
+    <div id="people-container" class="hidden"></div>
+    <div id="pagination-container" class="hidden">
         <label for="people-pagination">Select page</label>
         <select id="people-pagination"></select>
     </div>
