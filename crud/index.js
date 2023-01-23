@@ -3,6 +3,7 @@ console.log('CRUD');
 window.onload = () => {
     const preloader = document.getElementById('loading-container');
     const postsContainer = document.getElementById('posts-container');
+    const postAddContainer = document.getElementById('post-add-container');
     const postsTable = document.getElementById('posts-table-body');
     const createPostForm = document.getElementById('create-post-form');
 
@@ -36,6 +37,7 @@ window.onload = () => {
         }).then(() => {
         hideElement(preloader);
         showElement(postsContainer);
+        showElement(postAddContainer);
     })
 
 
