@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GoIT - CRUD</title>
+	
+	<link href="index.css" rel="stylesheet">
+	<script src="index.js"></script>
+</head>
+<body>
+<div id="loading-container">
+	Loading...
+</div>
+<div id="post-add-container">
+	<form id="create-post-form">
+		<table>
+			<tbody>
+			<tr>
+				<td class="create-post-title">USER ID</td>
+				<td class="create-post-input">
+					<input id='add-post-user-id' required type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="create-post-title">TITLE</td>
+				<td class="create-post-input">
+					<input id='add-post-title' required type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="create-post-title">Body</td>
+				<td class="create-post-input"><textarea cols="30" id="add-post-body" required rows="2"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button id="create-post-button" type="submit">Create</button>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+<div class="hidden" id="posts-container">
+	<table id="posts-table">
+		<tbody id="posts-table-body">
+		<tr>
+			<th class="table-id-cell">ID</th>
+			<th class="table-user-id-cell">USER ID</th>
+			<th class="table-title-cell">TITLE</th>
+			<th class="table-body-cell">BODY</th>
+			<th class="table-action-cell">ACTIONS</th>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div class="hidden" id="add-post-form-container">
+</div>
+</body>
+</html>

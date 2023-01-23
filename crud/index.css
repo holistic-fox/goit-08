@@ -1,0 +1,56 @@
+table, th, td {
+    border:1px solid black;
+}
+
+button{
+    padding: 4%;
+    margin-right: 2%;
+}
+
+input, textarea {
+    width: 95%;
+    cursor: pointer;
+}
+
+input[readonly=readonly], textarea[readonly=readonly] {
+    width: 95%;
+    cursor: pointer;
+    background-color: lightsteelblue;
+}
+
+.create-post-title{
+    width: 20%;
+}
+
+.create-post-input{
+    width: 80%;
+}
+
+#create-post-form{
+    margin-top: 30px;
+    margin-bottom: 85px;
+}
+
+#create-post-form > table{
+   width: 100vh;
+}
+
+#create-post-button{
+    padding: 1%;
+    margin-right: 0%;
+   float: right;
+}
+
+.hidden{
+    display: none;
+}
+
+.table-id-cell{  width: 5%; }
+
+.table-user-id-cell{ width: 5%; }
+
+.table-title-cell{ width: 30%; }
+
+.table-body-cell{ width: 50%; }
+
+.table-action-cell{ width: 10%; }
