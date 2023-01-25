@@ -1,6 +1,8 @@
 console.log('Async await');
 
-// Live version
+// ------------------------------------------------------------------------------------------------------------------//
+
+//Get Single Planet with film and residents data LIVE API
 async function getPlanetDataLive(id) {
     const planet = await getJsonResponse(`https://swapi.dev/api/planets/${id}/`);
 
@@ -15,6 +17,9 @@ async function getPlanetDataLive(id) {
 
 // getPlanetDataLive(1).then(results => console.log('getPlanetDataLive -> results', results));
 
+// ------------------------------------------------------------------------------------------------------------------//
+
+//Get all planets with film and residents data LIVE API
 async function getAllPlanetDataMockLive() {
     const planets = await getJsonResponse(`https://swapi.dev/api/planets`);
 
@@ -39,6 +44,26 @@ async function getAllPlanetDataMockLive() {
 
 getAllPlanetDataMockLive().then(results => console.log('getAllPlanetDataMockLive -> results', results))
 
+// ------------------------------------------------------------------------------------------------------------------//
+
+//Get Single Planet with film and residents data FAKE API
+async function getPlanetData(id) {
+    const planet = await getPlanetsMock(`https://swapi.dev/api/planets/${id}/`);
+
+    const filmsPromise = planet['films'].map(async url => await getFilmsMock(url));
+    const residentsPromise = planet['residents'].map(async url => await getResidentsMock(url));
+
+    const films = await Promise.all(filmsPromise);
+    const residents = await Promise.all(residentsPromise);
+
+    return {...planet, films, residents};
+}
+
+// getPlanetData(1).then(results => console.log('getPlanetData -> results', results));
+
+// ------------------------------------------------------------------------------------------------------------------//
+
+//Get All Planets with film and residents data FAKE API
 async function getAllPlanetDataMock() {
     const planets = await getPlanetsMock();
 
@@ -63,28 +88,9 @@ async function getAllPlanetDataMock() {
 
 // getAllPlanetDataMock().then(results => console.log('getAllPlanetDataMock -> results', results));
 
-async function getJsonResponse(url) {
-    const response = await fetch(url);
-    return response.json();
-}
+// ------------------------------------------------------------------------------------------------------------------//
 
-
-// Mock Version
-async function getPlanetData(id) {
-    const planet = await getPlanetsMock(`https://swapi.dev/api/planets/${id}/`);
-
-    const filmsPromise = planet['films'].map(async url => await getFilmsMock(url));
-    const residentsPromise = planet['residents'].map(async url => await getResidentsMock(url));
-
-    const films = await Promise.all(filmsPromise);
-    const residents = await Promise.all(residentsPromise);
-
-    return {...planet, films, residents};
-}
-
-// getPlanetData(1).then(results => console.log('getPlanetData -> results', results));
-
-// Planets Mock
+// Planets Mocks - FAKE API
 const planets = {
     "count": 60,
     "next": "https://swapi.dev/api/planets/?page=2",
@@ -254,7 +260,9 @@ function getPlanetsMock(url = '') {
     });
 }
 
-// Films Mock
+// ------------------------------------------------------------------------------------------------------------------//
+
+// Films Mock - FAKE API
 const films = {
     "count": 6, "next": null, "previous": null, "results": [{
         "title": "A New Hope",
@@ -362,7 +370,9 @@ function getFilmsMock(url = '') {
     });
 }
 
-// Residents Mock
+// ------------------------------------------------------------------------------------------------------------------//
+
+// Residents Mock - FAKE API
 const residents = {
     count: 82,
     next: null,
@@ -2276,6 +2286,15 @@ function getResidentsMock(url = '') {
     });
 }
 
+// ------------------------------------------------------------------------------------------------------------------//
+
+//Helper functions
+
 function getIndexFromUrl(url) {
     return url.substring(url.length - 2, url.length - 1) - 1;
+}
+
+async function getJsonResponse(url) {
+    const response = await fetch(url);
+    return response.json();
 }
