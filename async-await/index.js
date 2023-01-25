@@ -60,11 +60,13 @@ async function getAllPlanetDataMockLive() {
 }
 
 // getAllPlanetDataMockLive().then(results => console.log('getAllPlanetDataMockLive -> results', results))
+// getAllPlanetDataMockLive().then(planets => renderPlanets(planets));
+
 
 // ------------------------------------------------------------------------------------------------------------------//
 
 //Get Single Planet with film and residents data FAKE API
-async function getPlanetData(id) {
+async function getPlanetDataMock(id) {
     const planet = await getPlanetsMock(`https://swapi.dev/api/planets/${id}/`);
 
     const filmsPromise = planet['films'].map(async url => await getFilmsMock(url));
@@ -78,13 +80,12 @@ async function getPlanetData(id) {
 
 // getPlanetData(1).then(results => console.log('getPlanetData -> results', results));
 
+
 // ------------------------------------------------------------------------------------------------------------------//
 
 //Get All Planets with film and residents data FAKE API
 async function getAllPlanetDataMock() {
     const planets = await getPlanetsMock();
-
-    console.log(planets)
 
     const detailsPromise = planets['results'].map(async planet => {
 
@@ -104,6 +105,7 @@ async function getAllPlanetDataMock() {
 }
 
 // getAllPlanetDataMock().then(results => console.log('getAllPlanetDataMock -> results', results));
+// getAllPlanetDataMock().then(planets => renderPlanets(planets));
 
 // ------------------------------------------------------------------------------------------------------------------//
 
@@ -2308,10 +2310,49 @@ function getResidentsMock(url = '') {
 //Helper functions
 
 function getIndexFromUrl(url) {
-    return url.substring(url.length - 2, url.length - 1) - 1;
+
+    const part_01 = url.substring(url.length - 3, url.length - 1);
+    const part_02 = url.substring(url.length - 2, url.length - 1);
+    return Number(!isNaN(part_01) ? part_01 : part_02) - 1;
 }
 
 async function getJsonResponse(url) {
     const response = await fetch(url);
     return response.json();
+}
+
+function renderPlanets(planets) {
+    const root = document.getElementById('planets');
+    planets.forEach(planet => root.append(getPlanetTemplate(planet)));
+}
+
+function getPlanetTemplate(planet) {
+    const root = document.createElement('div');
+    const planetName = document.createElement('div');
+    planetName.innerText = planet['name']
+
+    const filmsRoot = document.createElement('ul');
+    planet['films'].forEach(film => {
+        const li = document.createElement('li');
+        li.innerText = film['title'];
+        filmsRoot.append(li);
+
+    });
+
+    const residentsRoot = document.createElement('ul');
+    planet['residents'].forEach(resident => {
+        const li = document.createElement('li');
+        li.innerText = resident['name'];
+        residentsRoot.append(li);
+
+    });
+
+    const divider = document.createElement('hr');
+
+    root.append(planetName);
+    root.append(filmsRoot);
+    root.append(residentsRoot);
+    root.append(divider);
+
+    return root;
 }
