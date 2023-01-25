@@ -23,14 +23,16 @@ async function getPlanetDataLive(id) {
 async function getAllPlanetDataMockLive() {
     const planets = await getJsonResponse(`https://swapi.dev/api/planets`);
 
-    console.log(planets)
-
     const detailsPromise = planets['results'].map(async planet => {
 
-        const filmsPromise = planet['films'].map(async url => await getJsonResponse(url));
-        const residentsPromise = planet['residents'].map(async url => await getJsonResponse(url));
+       try {
+           const filmsPromise = planet['films'].map(async url => await getJsonResponse(url));
+           const residentsPromise = planet['residents'].map(async url => await getJsonResponse(url));
 
-        return {films: await Promise.all(filmsPromise), residents: await Promise.all(residentsPromise)}
+           return {films: await Promise.all(filmsPromise), residents: await Promise.all(residentsPromise)}
+       }catch (e){
+           console.log(e)
+       }
     });
 
     const details = await Promise.all(detailsPromise);
