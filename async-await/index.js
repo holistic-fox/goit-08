@@ -1,5 +1,25 @@
 console.log('Async await');
 
+
+async function getFirstPlanet() {
+    const planet = await fetch(`https://swapi.dev/api/planets/1`);
+    return planet.json();
+}
+
+// getFirstPlanet().then(results => console.log('getFirstPlanet() -> results', results));
+
+async function getFirstPlanetWithData(){
+    const planet = await getJsonResponse(`https://swapi.dev/api/planets/1`);
+
+    const films = [await getJsonResponse(planet['films'][0]), await getJsonResponse(planet['films'][1])];
+    const residents = [await getJsonResponse(planet['residents'][0]), await getJsonResponse(planet['residents'][1])];
+
+    return {...planet, films, residents };
+
+};
+
+// getFirstPlanetWithData().then(results => console.log('getFirstPlanetWithData() -> results', results));
+
 // ------------------------------------------------------------------------------------------------------------------//
 
 //Get Single Planet with film and residents data LIVE API
@@ -25,14 +45,14 @@ async function getAllPlanetDataMockLive() {
 
     const detailsPromise = planets['results'].map(async planet => {
 
-       try {
-           const filmsPromise = planet['films'].map(async url => await getJsonResponse(url));
-           const residentsPromise = planet['residents'].map(async url => await getJsonResponse(url));
+        try {
+            const filmsPromise = planet['films'].map(async url => await getJsonResponse(url));
+            const residentsPromise = planet['residents'].map(async url => await getJsonResponse(url));
 
-           return {films: await Promise.all(filmsPromise), residents: await Promise.all(residentsPromise)}
-       }catch (e){
-           console.log(e)
-       }
+            return {films: await Promise.all(filmsPromise), residents: await Promise.all(residentsPromise)}
+        } catch (e) {
+            console.log(e)
+        }
     });
 
     const details = await Promise.all(detailsPromise);
@@ -44,7 +64,7 @@ async function getAllPlanetDataMockLive() {
     }))
 }
 
-getAllPlanetDataMockLive().then(results => console.log('getAllPlanetDataMockLive -> results', results))
+// getAllPlanetDataMockLive().then(results => console.log('getAllPlanetDataMockLive -> results', results))
 
 // ------------------------------------------------------------------------------------------------------------------//
 
