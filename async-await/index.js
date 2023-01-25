@@ -8,13 +8,13 @@ async function getFirstPlanet() {
 
 // getFirstPlanet().then(results => console.log('getFirstPlanet() -> results', results));
 
-async function getFirstPlanetWithData(){
+async function getFirstPlanetWithData() {
     const planet = await getJsonResponse(`https://swapi.dev/api/planets/1`);
 
     const films = [await getJsonResponse(planet['films'][0]), await getJsonResponse(planet['films'][1])];
     const residents = [await getJsonResponse(planet['residents'][0]), await getJsonResponse(planet['residents'][1])];
 
-    return {...planet, films, residents };
+    return {...planet, films, residents};
 
 };
 
@@ -44,15 +44,10 @@ async function getAllPlanetDataMockLive() {
     const planets = await getJsonResponse(`https://swapi.dev/api/planets`);
 
     const detailsPromise = planets['results'].map(async planet => {
+        const filmsPromise = planet['films'].map(async url => await getJsonResponse(url));
+        const residentsPromise = planet['residents'].map(async url => await getJsonResponse(url));
 
-        try {
-            const filmsPromise = planet['films'].map(async url => await getJsonResponse(url));
-            const residentsPromise = planet['residents'].map(async url => await getJsonResponse(url));
-
-            return {films: await Promise.all(filmsPromise), residents: await Promise.all(residentsPromise)}
-        } catch (e) {
-            console.log(e)
-        }
+        return {films: await Promise.all(filmsPromise), residents: await Promise.all(residentsPromise)}
     });
 
     const details = await Promise.all(detailsPromise);
