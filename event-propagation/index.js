@@ -31,12 +31,17 @@ window.onload = () => {
 
     buttonEls.forEach(btn => {
         btn.addEventListener('click', (event) => {
-            event.stopPropagation();
-            // event.stopImmediatePropagation();
+            // event.stopPropagation();
+            event.stopImmediatePropagation();
             console.log('buttonEls was clicked!')
             console.log('event.target', event.target)
             console.log('event.currentTarget', event.currentTarget)
             console.log('------------------')
         })
+
+        // btn.addEventListener('click', () => {
+        //     console.log('Another Attached Event!')
+        // })
+
     });
 }
