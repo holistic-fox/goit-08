@@ -1,0 +1,9 @@
+.container{
+    padding: 10vh;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.container-item__button{
+    cursor: pointer;
+}

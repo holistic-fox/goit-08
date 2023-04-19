@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Propagation</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="index.js"></script>
+</head>
+<body>
+	app
+	<div id="app" class="container">
+		app-buttons-container
+		<div id="app-buttons-container" class="container">
+			<button data-id="01" class="container-item__button">Click me 01!</button>
+			<button data-id="02" class="container-item__button">Click me 02!</button>
+			<button data-id="03" class="container-item__button">Click me 02!</button>
+		</div>
+		
+		form-container
+		<div id="app-form-container" class="container">
+			<form id="app-form" onsubmit="event.stopPropagation()">
+				<label for="name-control">Name</label>
+				<input id="name-control" type="text" >
+				
+				<button type="submit" id="submit-form-button">Sign in!</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
