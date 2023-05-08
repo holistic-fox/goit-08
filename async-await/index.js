@@ -16,26 +16,39 @@ async function getFirstPlanetWithData() {
 
     return {...planet, films, residents};
 
-};
+}
 
 // getFirstPlanetWithData().then(results => console.log('getFirstPlanetWithData() -> results', results));
 
 // ------------------------------------------------------------------------------------------------------------------//
 
 //Get Single Planet with film and residents data LIVE API
-async function getPlanetDataLive(id) {
+async function getPlanetDataLiveV1(id) {
     const planet = await getJsonResponse(`https://swapi.dev/api/planets/${id}/`);
 
     const filmsPromise = planet['films'].map(async url => await getJsonResponse(url));
     const residentsPromise = planet['residents'].map(async url => await getJsonResponse(url));
 
+    //films are loaded first then residents
     const films = await Promise.all(filmsPromise);
     const residents = await Promise.all(residentsPromise);
 
     return {...planet, films, residents};
 }
 
-// getPlanetDataLive(1).then(results => console.log('getPlanetDataLive -> results', results));
+// getPlanetDataLiveV1(1).then(results => console.log('getPlanetDataLiveV1 -> results', results));
+
+//Get Single Planet with film and residents data LIVE API films and residents are loaded at the same time
+async function getPlanetDataLiveV2(planetId) {
+    const planet = await getJsonResponse(`https://swapi.dev/api/planets/${planetId}/`);
+    const data = await Promise.all([
+        Promise.all(planet['films'].map(async url => await getJsonResponse(url))),
+        Promise.all(planet['residents'].map(async url => await getJsonResponse(url)))
+    ]);
+    return {...planet, films: data[0], residents: data[1]};
+}
+
+// getPlanetDataLiveV2(1).then(results => console.log('getPlanetDataLiveV2 -> results', results));
 
 // ------------------------------------------------------------------------------------------------------------------//
 
