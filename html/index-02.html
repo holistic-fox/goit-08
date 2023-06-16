@@ -1,109 +1,110 @@
 <!DOCTYPE html>
-<html lang="pl">
-<head>
-	<meta charset="utf8">
-	<title>
-		My first HTML document
-	</title>
-	<style>
-		body {
-			font-family: sans-serif;
-			font-size: 20px;
-		}
-		table th,
-		table td {
-			padding: 10px;
-			border: 1px solid black;
-		}
-		.highlight{
-			color: white;
-			background-color: black;
-		}
-	</style>
-</head>
-<body>
-<header>
-</header>
-<main>
-	<section>
-		<h1>Table example</h1>
-		<table>
-			<thead>
-			<tr>
-				<th>Date</th>
-				<th>Temp</th>
-				<th>Rain</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td>
-					<time datetime="2023-06-14">14.06.2023</time>
-				</td>
-				<td>18&#x2103</td>
-				<td>0mm</td>
-			</tr>
-			<tr>
-				<td>
-					<time datetime="2023-06-15">15.06.2023</time>
-				</td>
-				<td>20&#x2103</td>
-				<td>0mm</td>
-			</tr>
-			<tr>
-				<td>
-					<time datetime="2023-06-16">16.06.2023</time>
-				</td>
-				<td>17&#x2103</td>
-				<td>4mm</td>
-			</tr>
-			</tbody>
-		</table>
-	</section>
-	<section>
-		<h1>Text Example</h1>
-		
-		<h3>dl</h3>
-		<dl>
-			<dt>Weredyk</dt>
-			<dd>osoba, która mówi prawdę bez względu na <span class="highlight">konsekwencje</span>, nie liczać się z tym, że może być ona dla kogoś przykra;</dd>
-		</dl>
-		<dl>
-			<dt>Fintifluszka</dt>
-			<dd>drobny przedmiot bez określonego <span class="highlight">przeznaczenia</span>;</dd>
-		</dl>
-		<dl>
-			<dt>Enofil</dt>
-			<dd>miłośnik <span class="highlight">wina</span>;</dd>
-		</dl>
-		
-		<h3>pre</h3>
-		<pre>
-			<strong>Lorem ipsum</strong> <em>dolor sit amet</em>, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-			Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</pre>
-		
-		<h3>p</h3>
-		<p>
-			<strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-			Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</p>
-		
-		<h3>
-			sup i sub
-		</h3>
-		<p>
-			f(x)=a<sup>2</sup>+bx+c
-		</p>
-		<p>
-			C<sub>2</sub>H<sub>5</sub>OH
-		</p>
-	</section>
-</main>
-<footer></footer>
-</body>
+<html lang="en">
+	<head>
+		<meta charset="utf8">
+		<title>
+			My first HTML document
+		</title>
+		<style>
+			.highlight{
+				background-color: black;
+				color: white;
+			}
+			table th,
+			table td {
+				padding: 10px;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<header></header>
+		<main>
+			<section>
+				<h1>Table example</h1>
+				<table>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Temp &#x2103</th>
+							<th>Rain</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<time datetime="2023-06-14">14.06.2023</time>
+							</td>
+							<td>18</td>
+							<td>0mm</td>
+						</tr>
+						<tr>
+							<td>
+								<time datetime="2023-06-15">15.06.2023</time>
+							</td>
+							<td>20</td>
+							<td>0mm</td>
+						</tr>
+						<tr>
+							<td>
+								<time datetime="2023-06-16">16.06.2023</time>
+							</td>
+							<td>17</td>
+							<td>4mm</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<section>
+				<h1>
+					Text Example
+				</h1>
+				
+				<h3>sub i sup</h3>
+				
+				<p>
+					f(x)=a<sup>2</sup> + bx + c
+				</p>
+				
+				<p>
+					C<sub>2</sub>H<sub>5</sub>OH
+				</p>
+				
+				<h3>dl</h3>
+				
+				<dl>
+					<dt>Weredyk</dt>
+					<dd>
+						osoba, która mówi prawdę bez względu na konsekwencje, nie liczać się z tym, że może być ona dla kogoś przykra;
+					</dd>
+				</dl>
+				
+				<dl>
+					<dt>Fintifluszka</dt>
+					<dd>drobny przedmiot bez określonego przeznaczenia;</dd>
+				</dl>
+				
+				<p>
+					<em>Lorem ipsum</em> <i>dolor sit amet</i>, consectetur adipiscing elit,
+					<strong>sed do eiusmod tempor </strong><b>incididunt ut labore et</b> dolore magna aliqua.
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+					nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+					<span class="highlight">reprehenderit in voluptate</span> velit esse cillum dolore eu fugiat nulla pariatur.
+					Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+					mollit anim id est laborum.
+				</p>
+				
+				<pre>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+					nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+					Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+					mollit anim id est laborum.
+				</pre>
+			</section>
+		</main>
+		<footer></footer>
+	</body>
 </html>
